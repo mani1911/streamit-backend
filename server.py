@@ -6,6 +6,10 @@ app = Flask(__name__)
 CORS(app)
 DEEZER_CHART_URL = "https://api.deezer.com/chart/0/tracks"
 
+@app.route('/health', methods=['GET'])
+def health():
+    return "healthy"
+
 @app.route('/songs', methods=['GET'])
 def get_songs():
     """Fetch popular Deezer songs with pagination."""
@@ -44,4 +48,4 @@ def get_songs():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
